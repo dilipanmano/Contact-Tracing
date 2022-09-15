@@ -26,9 +26,9 @@ public with sharing class CTLocationTracingController {
 
   public static List<Location_Tracing__c> getLocationsByLocationIds(Set<Id> locationIds) {
     List<Location_Tracing__c> records = [
-      SELECT Id, Person__c, Location__c
+      SELECT Id, Person__c, Location__c, Person__r.Health_Status__c
       FROM Location_Tracing__c
-      WHERE Location__c IN :locationIds AND Visit_Date__c = LAST_N_DAYS:10
+      WHERE Location__c IN :locationIds AND Visit_Date__c = LAST_N_DAYS:10 AND Person__r.Health_Status__c = 'Green'
     ];
     return records;
   }
