@@ -43,8 +43,8 @@ public with sharing class CTLocationTracingController {
   public static List<Location_Tracing__c> checkDuplicates(
     List<Location_Tracing__c> newLocationTracingIds
   ) {
-    Set<Person__c> personList = new Set<Person__c>();
-    Set<Location__c> locationList = new Set<Location__c>();
+    Set<Id> personList = new Set<Id>();
+    Set<Id> locationList = new Set<Id>();
     for (Location_Tracing__c lt : newLocationTracingIds) {
       personList.add(lt.Person__c);
       locationList.add(lt.Location__c);
@@ -54,13 +54,13 @@ public with sharing class CTLocationTracingController {
       FROM Location_Tracing__c
       WHERE Person__c IN :personList AND Location__c IN :locationList
     ];
-    Map<Location__c, Set<Person__c>> mapLocationPerson = new Map<Location__c, Set<Person__c>>();
+    Map<Id, Set<Id>> mapLocationPerson = new Map<Id, Set<Id>>();
     if (existingLT != null && existingLT.size() > 0) {
       for (Location_Tracing__c lt : existingLT) {
-        if (!mapLocationPerson.containKey(lt.Location__c)) {
-          mapLocationPerson.put(lt.Location__c, new Set<Person__c>());
+        if (!mapLocationPerson.containsKey(lt.Location__c)) {
+          mapLocationPerson.put(lt.Location__c, new Set<Id>());
         }
-        Set<Person__c> tempPersonIds = mapLocationPerson.get(lt.Location__c);
+        Set<Id> tempPersonIds = mapLocationPerson.get(lt.Location__c);
         tempPersonIds.add(lt.Person__c);
         mapLocationPerson.put(lt.Location__c, tempPersonIds);
       }
@@ -74,8 +74,7 @@ public with sharing class CTLocationTracingController {
       ) {
         dupes.add(nlt);
       }
-
-      return dupes;
     }
+    return dupes;
   }
 }
