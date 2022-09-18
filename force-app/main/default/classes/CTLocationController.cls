@@ -52,4 +52,19 @@ public with sharing class CTLocationController {
     }
     return null;
   }
+
+  public static Map<String, Integer> getStatusCount() {
+    Map<String, Integer> mapHealthPerson = new Map<String, Integer>();
+    for (AggregateResult healthStatus : [
+      SELECT Status__c, Count(Id) locationCount
+      FROM Location__c
+      GROUP BY Status__c
+    ]) {
+      mapHealthPerson.put(
+        (String) healthStatus.get('Status__c'),
+        (Integer) healthStatus.get('locationCount')
+      );
+    }
+    return mapHealthPerson;
+  }
 }
