@@ -23,7 +23,7 @@ public with sharing class CTPersonController {
   }
 
   public static List<Person__c> searhPeople(String searchTerm) {
-    String s = searchTerm+ '%';
+    String s = searchTerm + '%';
     List<Person__c> records = [
       SELECT
         Id,
@@ -56,6 +56,20 @@ public with sharing class CTPersonController {
     }
     return null;
   }
+
+  public static Map<String, Integer> getHealthStatusCount() {
+    Map<String, Integer> mapHealthStatusCount = new Map<String, Integer>();
+    for (AggregateResult healthStatus : [
+      SELECT Health_Status__c, Count(Id) personCount
+      FROM Person__c
+      GROUP BY Health_Status__c
+    ]) {
+      mapHealthStatusCount.put(
+        (String) healthStatus.get('Health_Status__c'),
+        (Integer) healthStatus.get('personCount')
+      );
+    }
+
+    return mapHealthStatusCount;
+  }
 }
-
-
