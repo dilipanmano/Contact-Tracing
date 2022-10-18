@@ -72,4 +72,51 @@ public with sharing class CTPersonController {
 
     return mapHealthStatusCount;
   }
+
+  public static Set<Id> getCohabitants(Set<Id> personIds) {
+    List<String> healthStatus = new List<String>{ 'Green', 'Yellow' };
+    List<People_Tracing__c> peopleTraces = [
+      SELECT Id, Person_1__c, Person_2__c
+      FROM People_Tracing__c
+      WHERE
+        Contact_Type__c = 'Cohabitant'
+        AND (Person_1__c IN :personIds
+        OR Person_2__c IN :personIds)
+        AND (Person_1__r.Health_Status__c IN :healthStatus
+        OR Person_2__r.Health_Status__c IN :healthStatus)
+    ];
+    Set<Id> cohabitants = new Set<Id>();
+    for (People_Tracing__c p : peopleTraces) {
+      if (!personIds.contains(p.Person_1__c)) {
+        cohabitants.add(p.Person_1__c);
+      }
+      if (!personIds.contains(p.Person_2__c)) {
+        cohabitants.add(p.Person_2__c);
+      }
+    }
+    return cohabitants;
+  }
+
+  public static Set<Id> getNeighbours(Set<Id> personIds) {
+    List<People_Tracing__c> peopleTraces = [
+      SELECT Id, Person_1__c, Person_2__c
+      FROM People_Tracing__c
+      WHERE
+        Contact_Type__c = 'Neighbours'
+        AND (Person_1__c IN :personIds
+        OR Person_2__c IN :personIds)
+        AND (Person_1__r.Health_Status__c = 'Green'
+        OR Person_2__r.Health_Status__c = 'Green')
+    ];
+    Set<Id> neighbours = new Set<Id>();
+    for (People_Tracing__c p : peopleTraces) {
+      if (!personIds.contains(p.Person_1__c)) {
+        neighbours.add(p.Person_1__c);
+      }
+      if (!personIds.contains(p.Person_2__c)) {
+        neighbours.add(p.Person_2__c);
+      }
+    }
+    return neighbours;
+  }
 }

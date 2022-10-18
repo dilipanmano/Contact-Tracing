@@ -5,11 +5,7 @@
 // You can also execute the entire file by running the command:
 //     SFDX: Execute Anonymous Apex with Editor Contents
 
-List<People_Tracing__c> newPeopleTracing = new List<People_Tracing__c>();
-People_Tracing__c p1 = new People_Tracing__c();
-People_Tracing__c p2 = new People_Tracing__c();
-p1.Person_1__c = 'a035g000007EAlpAAG';
-p1.Person_2__c = 'a035g000007EAlvAAG';
-newPeopleTracing.add(p1);
-//newPeopleTracing.
-system.debug(CTPeopleTracingController.checkDuplicates(newPeopleTracing));
+Set<Id> personIds = new Set<id>();
+personIds.add('a035g000007EAlpAAG');
+
+system.debug(CTPersonController.getCohabitants(personIds));
