@@ -144,4 +144,29 @@ public with sharing class CTPersonController {
     }
     return primaryContacts;
   }
+
+  public static Set<Id> getSecondaryContacts(Set<Id> primaryontactIds) {
+    List<String> healthStatus = new List<String>{ 'Green', 'Yellow' };
+    List<People_Tracing__c> peopleTraces = [
+      SELECT Id, Person_1__c, Person_2__c
+      FROM People_Tracing__c
+      WHERE
+        Contact_Type__c = 'Other'
+        AND (Person_1__c IN :primaryontactIds
+        OR Person_2__c IN :primaryontactIds)
+        AND Contact_Date__c = LAST_N_DAYS:10
+        AND (Person_1__r.Health_Status__c IN :healthStatus
+        OR Person_2__r.Health_Status__c IN :healthStatus)
+    ];
+    Set<Id> secondaryContacts = new Set<Id>();
+    for (People_Tracing__c p : peopleTraces) {
+      if (!primaryontactIds.contains(p.Person_1__c)) {
+        secondaryContacts.add(p.Person_1__c);
+      }
+      if (!primaryontactIds.contains(p.Person_2__c)) {
+        secondaryContacts.add(p.Person_2__c);
+      }
+    }
+    return secondaryContacts;
+  }
 }
