@@ -41,18 +41,14 @@ public with sharing class CTPersonTriggerHandler {
         redStatus.add(person.Id);
       }
     }
-
-    List<Id> alreadyProcessed = new List<Id>();
+    List<Person__c> personUpdate = new List<Person__c>();
+    Set<Id> alreadyProcessed = new Set<Id>();
     alreadyProcessed.addAll(redStatus);
     Set<Id> orangeStatus = new Set<Id>();
     Set<Id> yellowStatus = new Set<Id>();
 
     orangeStatus.addAll(
       CTPersonController.getCohabitants(redStatus, alreadyProcessed)
-    );
-
-    yellowStatus.addAll(
-      CTPersonController.getNeighbours(redStatus, alreadyProcessed)
     );
 
     Set<id> primary = CTPersonController.getPrimaryContacts(
@@ -62,7 +58,32 @@ public with sharing class CTPersonTriggerHandler {
     orangeStatus.addAll(primary);
 
     yellowStatus.addAll(
+      CTPersonController.getNeighbours(redStatus, alreadyProcessed)
+    );
+
+    yellowStatus.addAll(
       CTPersonController.getCohabitants(primary, alreadyProcessed)
     );
+
+    for (Id pid : orangeStatus) {
+      personUpdate.add(new Person__c(Id = pid, Health_Status__c = 'Orange'));
+    }
+
+    for (Id pid : yellowStatus) {
+      personUpdate.add(new Person__c(Id = pid, Health_Status__c = 'Yellow'));
+    }
+    if (personUpdate != null && personUpdate.size() > 0) {
+      update personUpdate;
+    }
+
+    List<Location_Tracing__c> locationTraces = CTLocationTracingController.getLocationsByPersonIds(
+      statusChange
+    );
+    if (locationTraces != null || locationTraces.size() > 0) {
+      Set<Id> locationIds = new Set<Id>();
+      for (Location_Tracing__c loc : locationTraces) {
+        locationIds.add(loc.Location__c);
+      }
+    }
   }
 }
