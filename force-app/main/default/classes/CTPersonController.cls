@@ -73,7 +73,10 @@ public with sharing class CTPersonController {
     return mapHealthStatusCount;
   }
 
-  public static Set<Id> getCohabitants(Set<Id> personIds) {
+  public static Set<Id> getCohabitants(
+    Set<Id> personIds,
+    Set<Id> alreadyProcessed
+  ) {
     List<String> healthStatus = new List<String>{ 'Green', 'Yellow' };
     List<People_Tracing__c> peopleTraces = [
       SELECT Id, Person_1__c, Person_2__c
@@ -87,17 +90,22 @@ public with sharing class CTPersonController {
     ];
     Set<Id> cohabitants = new Set<Id>();
     for (People_Tracing__c p : peopleTraces) {
-      if (!personIds.contains(p.Person_1__c)) {
+      if (!alreadyProcessed.contains(p.Person_1__c)) {
         cohabitants.add(p.Person_1__c);
+        alreadyProcessed.add(p.Person_1__c);
       }
-      if (!personIds.contains(p.Person_2__c)) {
+      if (!alreadyProcessed.contains(p.Person_2__c)) {
         cohabitants.add(p.Person_2__c);
+        alreadyProcessed.add(p.Person_2__c);
       }
     }
     return cohabitants;
   }
 
-  public static Set<Id> getNeighbours(Set<Id> personIds) {
+  public static Set<Id> getNeighbours(
+    Set<Id> personIds,
+    Set<Id> alreadyProcessed
+  ) {
     List<People_Tracing__c> peopleTraces = [
       SELECT Id, Person_1__c, Person_2__c
       FROM People_Tracing__c
@@ -110,17 +118,22 @@ public with sharing class CTPersonController {
     ];
     Set<Id> neighbours = new Set<Id>();
     for (People_Tracing__c p : peopleTraces) {
-      if (!personIds.contains(p.Person_1__c)) {
+      if (!alreadyProcessed.contains(p.Person_1__c)) {
         neighbours.add(p.Person_1__c);
+        alreadyProcessed.add(p.Person_1__c);
       }
-      if (!personIds.contains(p.Person_2__c)) {
+      if (!alreadyProcessed.contains(p.Person_2__c)) {
         neighbours.add(p.Person_2__c);
+        alreadyProcessed.add(p.Person_2__c);
       }
     }
     return neighbours;
   }
 
-  public static Set<Id> getPrimaryContacts(Set<Id> personIds) {
+  public static Set<Id> getPrimaryContacts(
+    Set<Id> personIds,
+    Set<Id> alreadyProcessed
+  ) {
     List<String> healthStatus = new List<String>{ 'Green', 'Yellow' };
     List<People_Tracing__c> peopleTraces = [
       SELECT Id, Person_1__c, Person_2__c
@@ -135,17 +148,22 @@ public with sharing class CTPersonController {
     ];
     Set<Id> primaryContacts = new Set<Id>();
     for (People_Tracing__c p : peopleTraces) {
-      if (!personIds.contains(p.Person_1__c)) {
+      if (!alreadyProcessed.contains(p.Person_1__c)) {
         primaryContacts.add(p.Person_1__c);
+        alreadyProcessed.add(p.Person_1__c);
       }
-      if (!personIds.contains(p.Person_2__c)) {
+      if (!alreadyProcessed.contains(p.Person_2__c)) {
         primaryContacts.add(p.Person_2__c);
+        alreadyProcessed.add(p.Person_2__c);
       }
     }
     return primaryContacts;
   }
 
-  public static Set<Id> getSecondaryContacts(Set<Id> primaryontactIds) {
+  public static Set<Id> getSecondaryContacts(
+    Set<Id> primaryontactIds,
+    Set<Id> alreadyProcessed
+  ) {
     List<String> healthStatus = new List<String>{ 'Green', 'Yellow' };
     List<People_Tracing__c> peopleTraces = [
       SELECT Id, Person_1__c, Person_2__c
@@ -160,11 +178,13 @@ public with sharing class CTPersonController {
     ];
     Set<Id> secondaryContacts = new Set<Id>();
     for (People_Tracing__c p : peopleTraces) {
-      if (!primaryontactIds.contains(p.Person_1__c)) {
+      if (!alreadyProcessed.contains(p.Person_1__c)) {
         secondaryContacts.add(p.Person_1__c);
+        alreadyProcessed.add(p.Person_1__c);
       }
-      if (!primaryontactIds.contains(p.Person_2__c)) {
+      if (!alreadyProcessed.contains(p.Person_2__c)) {
         secondaryContacts.add(p.Person_2__c);
+        alreadyProcessed.add(p.Person_2__c);
       }
     }
     return secondaryContacts;
