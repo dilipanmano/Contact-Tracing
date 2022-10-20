@@ -15,5 +15,9 @@ trigger CTPersonTrigger on Person__c(
     when Before_Update {
       CTPersonTriggerHandler.setStatusUpdateDate(Trigger.new, Trigger.oldMap);
     }
+
+    when After_Update {
+      CTPersonTriggerHandler.setHealthStatus(Trigger.new, Trigger.oldMap);
+    }
   }
 }
