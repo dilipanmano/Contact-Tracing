@@ -84,6 +84,7 @@ public with sharing class CTPersonTriggerHandler {
       for (Location_Tracing__c loc : locationTraces) {
         locationIds.add(loc.Location__c);
       }
+      CTLocationController.updateRedScore(locationIds);
     }
   }
 }
