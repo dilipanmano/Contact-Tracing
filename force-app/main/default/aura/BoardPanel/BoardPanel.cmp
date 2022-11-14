@@ -1,0 +1,16 @@
+<aura:component implements="flexipage:availableForAllPageTypes, force:appHostable">
+    <aura:attribute
+        name="modes"
+        type="List"
+        default="[
+    {'label': 'Easy', 'value': 'easy'},
+    {'label': 'Medium', 'value': 'medium'},
+    {'label': 'Hard', 'value': 'medium'},
+    ]"
+    />
+    <lightning:card title="Word Tile">
+        <lightning:combobox name="progress" label="Status" value="inProgress" placeholder="Select Progress" options="{! v.modes }" />
+        <lightning:button variant="brand" label="Start New Game" title="Start New Game" />
+        <lightning:button label="Shuffle" title="Shuffle" />
+    </lightning:card>
+</aura:component>
