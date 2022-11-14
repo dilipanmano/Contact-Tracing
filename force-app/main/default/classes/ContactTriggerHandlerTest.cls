@@ -152,4 +152,45 @@ public with sharing class ContactTriggerHandlerTest {
       }
     }
   }
+
+  @isTest
+  public static void activeContactCountDeleteTest() {
+    List<Contact> cons = [
+      SELECT id, LastName
+      FROM Contact
+      WHERE LastName = 'Contact 1'
+    ];
+
+    Test.startTest();
+    delete cons;
+    Test.stopTest();
+
+    List<Account> accs = [SELECT id, Name, Active_Contacts__c FROM Account];
+    for (Account acc : accs) {
+      if (acc.Name == 'Test 1') {
+        System.assertEquals(1, acc.Active_Contacts__c);
+      }
+    }
+  }
+
+  @isTest
+  public static void activeContactCountUndeleteTest() {
+    List<Contact> cons = [
+      SELECT id, LastName
+      FROM Contact
+      WHERE LastName = 'Contact 1'
+    ];
+    delete cons;
+
+    Test.startTest();
+    undelete cons;
+    Test.stopTest();
+
+    List<Account> accs = [SELECT id, Name, Active_Contacts__c FROM Account];
+    for (Account acc : accs) {
+      if (acc.Name == 'Test 1') {
+        System.assertEquals(2, acc.Active_Contacts__c);
+      }
+    }
+  }
 }
