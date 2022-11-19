@@ -3,11 +3,12 @@
         name="modes"
         type="List"
         default="[
-    {'label': 'Easy', 'value': 'easy'},
-    {'label': 'Medium', 'value': 'medium'},
-    {'label': 'Hard', 'value': 'hard'},
+    {'label': 'Easy', 'value': 'Easy'},
+    {'label': 'Medium', 'value': 'Medium'},
+    {'label': 'Hard', 'value': 'Hard'},
     ]"
     />
+    <aura:attribute name="selectedMode" type="String" />
     <lightning:card title="Word Tile">
         <lightning:layout horizontalAlign="center">
             <lightning:layoutItem padding="around-small">
@@ -16,16 +17,18 @@
                     label="Status"
                     variant="label-hidden"
                     value="inProgress"
+                    aura:id="gameMode"
                     placeholder="Select Progress"
                     options="{! v.modes }"
                 />
             </lightning:layoutItem>
             <lightning:layoutItem padding="around-small">
-                <lightning:button variant="brand" label="Start New Game" title="Start New Game" />
+                <lightning:button variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}" />
             </lightning:layoutItem>
             <lightning:layoutItem padding="around-small">
-                <lightning:button label="Shuffle" title="Shuffle" />
+                <lightning:button label="Shuffle" title="Shuffle" onclick="{!c.reshuffleBoard}" />
             </lightning:layoutItem>
         </lightning:layout>
+        Selected Mode : {!v.selectedMode}
     </lightning:card>
 </aura:component>
