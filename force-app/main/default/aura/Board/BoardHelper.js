@@ -105,7 +105,7 @@
         ];
 
         words = this.randomize(words);
-        return words.slice(0, count);
+        return words.slice(0, count * count);
     },
     randomize: function (array) {
         var currentIndex = array.length,

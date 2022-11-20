@@ -1,7 +1,7 @@
 ({
     startGame: function (component, event, helper) {
-        let gameModeComboBox = component.find("gameMode");
-        let gameMode = gameModeComboBox.get("v.value");
+        var gameModeComboBox = component.find("gameMode");
+        var gameMode = gameModeComboBox.get("v.value");
         component.set("v.selectedMode", gameMode);
     },
 
