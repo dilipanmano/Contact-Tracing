@@ -22,5 +22,19 @@
 
     doRender: function (component, event, helper) {
         console.log("doRender");
+    },
+
+    blockClickHandler: function (component, event, helper) {
+        var label = event.getParam("value");
+        var count = component.get("v.count") + 1;
+        component.set("v.count", count);
+        var winWord = component.get("v.winWord");
+        if (winWord === label) {
+            component.set("v.result", "You Win");
+            console.log("You win");
+        } else if (count === 3) {
+            component.set("v.result", "You Lose");
+            console.log("You lose");
+        }
     }
 });

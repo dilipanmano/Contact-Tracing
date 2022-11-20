@@ -28,7 +28,7 @@
             <lightning:layoutItem padding="around-small">
                 <lightning:button label="Shuffle" title="Shuffle" onclick="{!c.reshuffleBoard}" />
             </lightning:layoutItem>
-            Selected Mode : {!v.selectedMode}
+            <br />Selected Mode : {!v.selectedMode}
             <lightning:layoutItem size="12" padding="around-small">
                 <aura:if isTrue="{!v.selectedMode != null}">
                     <c:Board mode="{!v.selectedMode}"></c:Board>

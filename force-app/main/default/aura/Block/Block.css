@@ -1,0 +1,19 @@
+.THIS.blockProps {
+    border-radius: 8px;
+    text-transform: uppercase;
+    background-color: white;
+    height: 80px;
+    border: 1px solid white;
+    cursor: pointer;
+    letter-spacing: 1px;
+    font-weight: bold;
+    font-size: medium;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    transition: all 0.5s;
+
+}
+
+.THIS.blockProps:hover{
+    background-color: rgb(175, 175, 175);
+    border: 1px solid rgb(175, 175, 175);
+}
