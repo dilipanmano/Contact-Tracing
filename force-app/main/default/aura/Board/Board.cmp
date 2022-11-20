@@ -1,13 +1,27 @@
 <aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="words" type="List" />
+    <aura:attribute name="winWord" type="String" />
+    <aura:attribute name="count" type="Integer" default="0" />
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     <aura:handler name="render" value="{!this}" action="{!c.doRender}" />
-    <lightning:layout multipleRows="true">
-        <lightning:layoutItem size="4" padding="around-small">1 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small">2 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small">3 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small">4 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small">5 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small">6 </lightning:layoutItem>
-        <lightning:layoutItem size="4" padding="around-small">7 </lightning:layoutItem>
-    </lightning:layout>
+    <div class="board">
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem padding="around-small">
+                <div class="details slds-text-heading--medium">Win Word : <span class="win-word">{!v.winWord}</span></div>
+            </lightning:layoutItem>
+            <lightning:layoutItem size="size" padding="around-small">
+                <div class="details slds-text-heading--medium">Moves Left : {!(3-v.count)}</div>
+            </lightning:layoutItem>
+        </lightning:layout>
+
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="4" padding="around-small">1 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">2 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">3 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">4 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">5 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">6 </lightning:layoutItem>
+            <lightning:layoutItem size="4" padding="around-small">7 </lightning:layoutItem>
+        </lightning:layout>
+    </div>
 </aura:component>
