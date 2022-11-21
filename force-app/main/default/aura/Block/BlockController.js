@@ -8,5 +8,10 @@
             blockEvent.setParams({ value: label });
             blockEvent.fire();
         }
+    },
+
+    scriptsLoaded: function (component, event, helper) {
+        const divElement = component.getElement(".blockProps");
+        fitText(divElement);
     }
 });

@@ -4,7 +4,9 @@
 
     <aura:registerEvent name="blockClick" type="c:BlockClickEvent" />
 
-    <div class="blockProps slds-align--absolute-center slds-var-m-around_medium slds-var-p-around_medium" onclick="{!c.blockClickHandler}">
+    <ltng:require scripts="{!$Resource.FitText}" afterScriptsLoaded="{!c.scriptsLoaded}" />
+
+    <div class="blockProps slds-align_absolute-center slds-var-m-around_medium slds-var-p-around_medium" onclick="{!c.blockClickHandler}">
         <aura:if isTrue="{!v.open}">
             <div>{!v.label}</div>
         </aura:if>

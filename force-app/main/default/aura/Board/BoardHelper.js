@@ -127,5 +127,19 @@
     getWinWord: function (arr) {
         var randomIndex = Math.floor(Math.random() * arr.length);
         return arr[randomIndex];
+    },
+
+    disableBoard: function (component) {
+        component.set("v.disableBoard", true);
+    },
+
+    enableeBoard: function (component) {
+        component.set("v.disableBoard", false);
+    },
+
+    resetBoard: function (component) {
+        this.enableeBoard(component);
+        component.set("v.result", "");
+        component.set("v.count", 0);
     }
 });

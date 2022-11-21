@@ -18,6 +18,7 @@
         component.set("v.winWord", winWord);
         console.log(words);
         console.log(helper.getWinWord(words));
+        helper.resetBoard(component);
     },
 
     doRender: function (component, event, helper) {
@@ -32,9 +33,11 @@
         if (winWord === label) {
             component.set("v.result", "You Win");
             console.log("You win");
+            helper.disableBoard(component);
         } else if (count === 3) {
             component.set("v.result", "You Lose");
             console.log("You lose");
+            helper.disableBoard(component);
         }
     }
 });

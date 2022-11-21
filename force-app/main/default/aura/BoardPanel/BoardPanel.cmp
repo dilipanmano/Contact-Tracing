@@ -31,8 +31,7 @@
             <br />Selected Mode : {!v.selectedMode}
             <lightning:layoutItem size="12" padding="around-small">
                 <aura:if isTrue="{!v.selectedMode != null}">
-                    <c:Board mode="{!v.selectedMode}"></c:Board>
-                    <aura:set attribute="else"> else part </aura:set>
+                    <c:Board aura:id="boardComp" mode="{!v.selectedMode}"></c:Board>
                 </aura:if>
             </lightning:layoutItem>
         </lightning:layout>
