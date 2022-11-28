@@ -34,10 +34,20 @@
             component.set("v.result", "You Win");
             console.log("You win");
             helper.disableBoard(component);
+            helper.fireResultEvent("win");
         } else if (count === 3) {
             component.set("v.result", "You Lose");
             console.log("You lose");
             helper.disableBoard(component);
+            helper.fireResultEvent("lose");
         }
+    },
+
+    reshuffleBoard: function (component, event, helper) {
+        //Method defination goes here
+        var words = component.get("v.words");
+        words = helper.randomize(words);
+        component.set("v.words", words);
+        helper.resetBoard();
     }
 });

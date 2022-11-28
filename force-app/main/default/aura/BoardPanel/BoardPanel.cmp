@@ -9,6 +9,10 @@
     ]"
     />
     <aura:attribute name="selectedMode" type="String" />
+    <aura:attribute name="disableReshuffle" type="Boolean" default="true" />
+
+    <aura:handler event="c:ResultEvent" action="{!c.resultHandler}" />
+
     <lightning:card title="Word Tile">
         <lightning:layout horizontalAlign="center" multipleRows="true">
             <lightning:layoutItem padding="around-small">
@@ -26,7 +30,7 @@
                 <lightning:button variant="brand" label="Start New Game" title="Start New Game" onclick="{!c.startGame}" />
             </lightning:layoutItem>
             <lightning:layoutItem padding="around-small">
-                <lightning:button label="Shuffle" title="Shuffle" onclick="{!c.reshuffleBoard}" />
+                <lightning:button label="Shuffle" title="Shuffle" disabled="{!v.disableReshuffle}" onclick="{!c.reshuffleBoard}" />
             </lightning:layoutItem>
             <br />Selected Mode : {!v.selectedMode}
             <lightning:layoutItem size="12" padding="around-small">
