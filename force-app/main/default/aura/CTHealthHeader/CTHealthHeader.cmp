@@ -1,0 +1,57 @@
+<aura:component>
+    <div class="slds-page-header slds-page-header_record-home">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <span>
+                            <lightning:icon iconName="standard:apps_admin" alternativeText="Event" title="Event" />
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span>Contact Tracing</span>
+                                    <span class="slds-page-header__title slds-truncate" title="Person View">Person View</span>
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__control">
+                <ul class="slds-button-group-list">
+                    <li>
+                        <button class="slds-button slds-button_neutral">Add New</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="slds-page-header__row slds-page-header__row_gutters">
+            <div class="slds-page-header__col-details">
+                <ul class="slds-page-header__detail-row">
+                    <li class="slds-page-header__detail-block">
+                        <div class="green header-item" title="Green">Green</div>
+                        <div class="green header-item" title="">5</div>
+                    </li>
+
+                    <li class="slds-page-header__detail-block">
+                        <div class="yellow header-item" title="Yellow">Yellow</div>
+                        <div class="yellow header-item" title="">2</div>
+                    </li>
+
+                    <li class="slds-page-header__detail-block">
+                        <div class="orange header-item" title="Orange">Orange</div>
+                        <div class="orange header-item" title="">6</div>
+                    </li>
+
+                    <li class="slds-page-header__detail-block">
+                        <div class="red header-item" title="Red">Red</div>
+                        <div class="red header-item" title="">1</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</aura:component>
