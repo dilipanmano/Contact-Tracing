@@ -1,13 +1,15 @@
 <aura:component implements="force:appHostable">
+    <aura:attribute name="view" type="String" default="Person View" />
+    <aura:attribute name="scope" type="String" default="person" />
     <div class="container">
         <lightning:layout multipleRows="true">
             <lightning:layoutItem size="12">
-                <c:CTHealthHeader></c:CTHealthHeader>
+                <c:CTHealthHeader view="{!v.view}" scope="{!v.scope}"></c:CTHealthHeader>
             </lightning:layoutItem>
             <lightning:layoutItem size="12">
-                <lightning:tabset variant="vertical">
-                    <lightning:tab label="Person View"> Content in Person View </lightning:tab>
-                    <lightning:tab label="Location View"> Content in Location View </lightning:tab>
+                <lightning:tabset variant="vertical" onselect="{!c.tabsSelected}">
+                    <lightning:tab label="Person View" id="person"> Content in Person View </lightning:tab>
+                    <lightning:tab label="Location View" id="location"> Content in Location View </lightning:tab>
                 </lightning:tabset>
             </lightning:layoutItem>
         </lightning:layout>
