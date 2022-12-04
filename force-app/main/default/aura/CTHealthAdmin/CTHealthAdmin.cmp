@@ -8,8 +8,12 @@
             </lightning:layoutItem>
             <lightning:layoutItem size="12">
                 <lightning:tabset variant="vertical" onselect="{!c.tabsSelected}">
-                    <lightning:tab label="Person View" id="person"> Content in Person View </lightning:tab>
-                    <lightning:tab label="Location View" id="location"> Content in Location View </lightning:tab>
+                    <lightning:tab label="Person View" id="person">
+                        <c:CTRecentChanges tableScope="person"></c:CTRecentChanges>
+                    </lightning:tab>
+                    <lightning:tab label="Location View" id="location">
+                        <c:CTRecentChanges tableScope="location"></c:CTRecentChanges>
+                    </lightning:tab>
                 </lightning:tabset>
             </lightning:layoutItem>
         </lightning:layout>
