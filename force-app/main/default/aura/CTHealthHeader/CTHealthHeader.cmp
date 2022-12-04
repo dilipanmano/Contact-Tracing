@@ -1,6 +1,11 @@
-<aura:component>
+<aura:component controller="CTHealthHeaderController">
     <aura:attribute name="view" type="String" />
     <aura:attribute name="scope" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+    <aura:attribute name="count" type="Object" default="" />
+    <aura:method name="childGetHealthStatus" action="{!c.getStatusCount}" description="method to check count" access="public" />
+
     <div class="slds-page-header slds-page-header_record-home">
         <div class="slds-page-header__row">
             <div class="slds-page-header__col-title">
@@ -35,22 +40,22 @@
                 <ul class="slds-page-header__detail-row">
                     <li class="slds-page-header__detail-block">
                         <div class="green header-item" title="Green">Green</div>
-                        <div class="green header-item" title="">5</div>
+                        <div class="green header-item" title="">{!v.count.Green}</div>
                     </li>
 
                     <li class="slds-page-header__detail-block">
                         <div class="yellow header-item" title="Yellow">Yellow</div>
-                        <div class="yellow header-item" title="">2</div>
+                        <div class="yellow header-item" title="">{!v.count.Yellow}</div>
                     </li>
 
                     <li class="slds-page-header__detail-block">
                         <div class="orange header-item" title="Orange">Orange</div>
-                        <div class="orange header-item" title="">6</div>
+                        <div class="orange header-item" title="">{!v.count.Orange}</div>
                     </li>
 
                     <li class="slds-page-header__detail-block">
                         <div class="red header-item" title="Red">Red</div>
-                        <div class="red header-item" title="">1</div>
+                        <div class="red header-item" title="">{!v.count.Red}</div>
                     </li>
                 </ul>
             </div>

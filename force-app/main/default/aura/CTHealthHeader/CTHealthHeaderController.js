@@ -1,4 +1,8 @@
 ({
+    doInit: function (component, event, helper) {
+        helper.getHealthStatusCount(component, event, helper);
+    },
+
     createRecord: function (component, event, helper) {
         var currentScope = component.get("v.scope");
         if (currentScope === "person") {
@@ -11,5 +15,9 @@
             entityApiName: currentObject
         });
         createRecordEvent.fire();
+    },
+
+    getStatusCount: function (component, event, helper) {
+        helper.getHealthStatusCount(component, event, helper);
     }
 });
