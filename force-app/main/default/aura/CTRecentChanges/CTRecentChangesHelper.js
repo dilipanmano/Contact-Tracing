@@ -32,5 +32,23 @@
             { label: "Red Score", fieldName: "Red_Score__c", type: "Number" },
             { label: "Status Update Date", fieldName: "Status_Update_Date__c", type: "Date" }
         ]);
+    },
+
+    search: function (component, queryTerm) {
+        var scope = component.get("v.tableScope");
+        var action = scope === "person" ? component.get("c.searchPeople") : component.get("c.searchLocation");
+        action.setParams({ searchTerm: queryTerm });
+        action.setCallback(this, function (response) {
+            var state = response.getState();
+            if (state === "SUCCESS") {
+                var data = response.getReturnValue();
+                console.log("data " + data);
+                if (data && data.length > 0) {
+                    component.set("v.data", response.getReturnValue());
+                }
+            }
+        });
+        $A.enqueueAction(action);
+        component.set("v.isSearching", false);
     }
 });

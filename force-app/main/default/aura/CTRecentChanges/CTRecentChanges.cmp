@@ -8,13 +8,15 @@
 
     <lightning:card title="Recent Changes">
         <aura:set attribute="actions">
-            <lightning:input
-                name="search"
-                aura:id="enter-search"
-                label="Hit Enter to Search"
-                placeholder="type here..."
-                isLoading="{!v.isSearching}"
-            />
+            <div onkeyup="{! c.handleKeyUp }">
+                <lightning:input
+                    name="search"
+                    aura:id="enter-search"
+                    label="Hit Enter to Search"
+                    placeholder="type here..."
+                    isLoading="{!v.isSearching}"
+                />
+            </div>
         </aura:set>
         <lightning:datatable keyField="id" data="{! v.data }" columns="{! v.columns }" hideCheckboxColumn="true" />
     </lightning:card>
