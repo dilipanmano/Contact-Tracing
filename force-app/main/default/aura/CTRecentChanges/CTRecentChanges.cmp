@@ -4,6 +4,9 @@
     <aura:attribute name="data" type="List" />
     <aura:attribute name="tableScope" type="String" default="person" />
 
+    <aura:registerEvent name="appPersonEvent" type="c:CTPersonSelectEvent" />
+    <aura:registerEvent name="appLocationEvent" type="c:CTLocationSelectEvent" />
+
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
 
     <lightning:card title="Recent Changes">
@@ -18,6 +21,12 @@
                 />
             </div>
         </aura:set>
-        <lightning:datatable keyField="id" data="{! v.data }" columns="{! v.columns }" hideCheckboxColumn="true" />
+        <lightning:datatable
+            keyField="id"
+            data="{! v.data }"
+            columns="{! v.columns }"
+            hideCheckboxColumn="true"
+            onrowaction="{! c.handleRowAction }"
+        />
     </lightning:card>
 </aura:component>

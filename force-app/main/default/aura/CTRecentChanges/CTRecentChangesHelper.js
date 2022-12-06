@@ -19,7 +19,13 @@
             { label: "Health Status", fieldName: "Health_Status__c", type: "text" },
             { label: "Phone", fieldName: "Mobile__c", type: "date" },
             { label: "Token", fieldName: "Token__c", type: "text" },
-            { label: "Status Update Date", fieldName: "Status_Update_Date__c", type: "Date" }
+            { label: "Status Update Date", fieldName: "Status_Update_Date__c", type: "Date" },
+            {
+                label: "View",
+                type: "button",
+                initialWidth: 135,
+                typeAttributes: { label: "View/Update", name: "view_details", title: "Click to View/Update Details" }
+            }
         ]);
     },
 
@@ -30,7 +36,13 @@
             { label: "Pincode", fieldName: "Pincode__c", type: "date" },
             { label: "Address", fieldName: "Address__c", type: "text" },
             { label: "Red Score", fieldName: "Red_Score__c", type: "Number" },
-            { label: "Status Update Date", fieldName: "Status_Update_Date__c", type: "Date" }
+            { label: "Status Update Date", fieldName: "Status_Update_Date__c", type: "Date" },
+            {
+                label: "View",
+                type: "button",
+                initialWidth: 135,
+                typeAttributes: { label: "View/Update", name: "view_details", title: "Click to View/Update Details" }
+            }
         ]);
     },
 

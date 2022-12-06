@@ -12,7 +12,14 @@
                         <c:CTRecentChanges tableScope="person"></c:CTRecentChanges>
                     </lightning:tab>
                     <lightning:tab label="Location View" id="location">
-                        <c:CTRecentChanges tableScope="location"></c:CTRecentChanges>
+                        <lightning:layout multipleRows="true">
+                            <lightning:layoutItem size="8" padding="around-small">
+                                <c:CTRecentChanges tableScope="location"></c:CTRecentChanges>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="4" padding="around-small">
+                                <c:CTLocationView></c:CTLocationView>
+                            </lightning:layoutItem>
+                        </lightning:layout>
                     </lightning:tab>
                 </lightning:tabset>
             </lightning:layoutItem>
