@@ -9,7 +9,14 @@
             <lightning:layoutItem size="12">
                 <lightning:tabset variant="vertical" onselect="{!c.tabsSelected}">
                     <lightning:tab label="Person View" id="person">
-                        <c:CTRecentChanges tableScope="person"></c:CTRecentChanges>
+                        <lightning:layout multipleRows="true">
+                            <lightning:layoutItem size="8" padding="around-small">
+                                <c:CTRecentChanges tableScope="person"></c:CTRecentChanges>
+                            </lightning:layoutItem>
+                            <lightning:layoutItem size="4" padding="around-small">
+                                <c:CTPersonView></c:CTPersonView>
+                            </lightning:layoutItem>
+                        </lightning:layout>
                     </lightning:tab>
                     <lightning:tab label="Location View" id="location">
                         <lightning:layout multipleRows="true">
