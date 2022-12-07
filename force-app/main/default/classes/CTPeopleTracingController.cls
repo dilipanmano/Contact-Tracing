@@ -11,7 +11,7 @@ public with sharing class CTPeopleTracingController {
                 Person_2__c,
                 Person_2__r.Health_Status__c
             FROM People_Tracing__c
-            WHERE Person_1__c = :recordId OR Person_2__c = :recordId
+            WHERE (Person_1__c = :recordId OR Person_2__c = :recordId) AND Contact_Date__c = Last_N_Days:30
             ORDER BY Contact_Date__c DESC
         ];
         return records;
