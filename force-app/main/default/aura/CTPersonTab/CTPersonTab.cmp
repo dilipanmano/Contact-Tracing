@@ -1,0 +1,57 @@
+<aura:component implements="force:appHostable" controller="CTUserTabController">
+    <aura:attribute name="recordId" type="String" />
+    <aura:attribute name="userFound" type="Boolean" default="false" />
+    <aura:attribute name="personObj" type="Object" />
+
+    <aura:attribute name="columns" type="List" />
+
+    <div class="container">
+        <div class="search-panel">
+            <lightning:input aura:id="search" placeholder="type here..." type="text" variant="label-hidden" value="{!v.recordId}" />
+            <lightning:button class="slds-button slds-button_neutral" label="Search" title="Brand action" onclick="{! c.handleClick }" />
+        </div>
+        <div class="header-panel">
+            <div class="container-card slds-align_absolute-center">
+                <aura:if isTrue="{!v.userFound}">
+                    <lightning:card>
+                        <div class="health-header">
+                            <div class="{!v.personObj.status}">
+                                <span>Hello {!v.personObj.name}, your status is {!v.personObj.status}</span>
+                                <div class="subheader-panel">
+                                    <div class="subheader-row">
+                                        <div class="row-item">
+                                            <div class="row-item-label slds-text-title">Phone</div>
+                                            <div class="row-item-value">{!v.personObj.phone}</div>
+                                        </div>
+                                        <div class="row-item">
+                                            <div class="row-item-label slds-text-title">Token</div>
+                                            <div class="row-item-value">{!v.personObj.token}</div>
+                                        </div>
+                                        <div class="row-item">
+                                            <div class="row-item-label slds-text-title">Status Updated On</div>
+                                            <div class="row-item-value">{!v.personObj.statusUpdatedOn}</div>
+                                        </div>
+                                        <div class="row-item">
+                                            <div class="row-item-label slds-text-title">Contact in Last 30 days</div>
+                                            <div class="row-item-value">{!v.personObj.contactsCount}</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="table-data">
+                                    <div>
+                                        <lightning:datatable
+                                            keyField="id"
+                                            data="{! v.personObj.contact }"
+                                            columns="{! v.columns }"
+                                            hideCheckboxColumn="true"
+                                        />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </lightning:card>
+                </aura:if>
+            </div>
+        </div>
+    </div>
+</aura:component>
