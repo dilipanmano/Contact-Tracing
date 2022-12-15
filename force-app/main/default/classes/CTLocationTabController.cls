@@ -2,10 +2,10 @@ public with sharing class CTLocationTabController {
     @AuraEnabled
     public static LocationInformation getLocationDetails(string recordId) {
         Location__c location = CTLocationController.getLocationById(recordId);
-        List<Location_Tracing__c> traces = CTLocationTracingController.getVisitors(recordId);
+        List<Location_Tracing__c> traces = CTLocationTracingController.getVisitorsFromLocation(recordId);
 
         LocationInformation li = new LocationInformation();
-        if (li != null) {
+        if (location != null) {
             li.Name = location.Name;
             li.Address = location.Address__c;
             li.Pincode = location.Pincode__c;

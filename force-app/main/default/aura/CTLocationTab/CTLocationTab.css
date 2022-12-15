@@ -1,0 +1,58 @@
+.THIS.container{
+    background-color: white;
+    margin: -12px;
+    height: 100%;
+}
+
+.THIS .search-panel{
+    display: flex;
+    justify-content: flex-end;
+    background: lightblue;
+    padding: 8px 8px 16px 8px;
+}
+
+.THIS .container-card{
+    flex-direction: column;
+    margin-top: -16px;
+    border-radius: 80px;
+}
+
+.THIS .Red {
+    background: red;
+}
+
+.THIS .Green {
+    background: green;
+}
+
+.THIS .Yellow {
+    background: #baba00;
+}
+
+.THIS .Orange {
+    background: orange;
+}
+
+.THIS .row-item {
+    flex: 1 1 auto;
+    margin: 0px 8px;
+}
+
+.THIS .subheader-row {
+    background: #f3f2f2;
+    display: flex;
+    padding: 8px 4px;
+}
+
+.THIS .health-header {
+    font-size: medium;
+    font-weight: 600;
+    padding: 16px 12px;
+    border-radius: 2rem 2rem 0 0;
+}
+
+.THIS .header-panel {
+    background-color: #dddbda;
+    width: 560px;
+    border-radius: 2rem 2rem 0 0;
+}
