@@ -24,7 +24,7 @@ public with sharing class CTLocationController {
         List<Location__c> records = [
             SELECT Name, Id, Address__c, Pincode__c, Red_Score__c, Status_Update_Date__c, Status__c
             FROM Location__c
-            WHERE Id = :locationId
+            WHERE Id = :locationId AND Status_Update_Date__c = LAST_N_DAYS:30
         ];
         if (records != null && records.size() > 0) {
             return records[0];
