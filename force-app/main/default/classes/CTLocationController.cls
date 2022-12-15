@@ -20,7 +20,7 @@ public with sharing class CTLocationController {
         return records;
     }
 
-    public static Location__c getPersonById(String locationId) {
+    public static Location__c getLocationById(String locationId) {
         List<Location__c> records = [
             SELECT Name, Id, Address__c, Pincode__c, Red_Score__c, Status_Update_Date__c, Status__c
             FROM Location__c
