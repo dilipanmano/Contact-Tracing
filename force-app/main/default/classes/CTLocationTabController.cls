@@ -22,6 +22,7 @@ public with sharing class CTLocationTabController {
                 vi.Name = trace.Person__r.Name;
                 vi.Token = trace.Person__r.Token__c;
                 vi.healthStatus = trace.Person__r.Health_Status__c;
+                vi.visitDate = trace.Visit_Date__c;
                 visitorList.add(vi);
             }
 
@@ -55,5 +56,7 @@ public with sharing class CTLocationTabController {
         public String healthStatus;
         @AuraEnabled
         public String Token;
+        @AuraEnabled
+        public Date visitDate;
     }
 }
